@@ -1,0 +1,28 @@
+<template name="questionOverview">
+
+	<div class="jumbotron col-md-8 col-md-offset-2">
+		<h2>Code: {{quiz_key}}</h2>
+		<h3>Quiz overview</h3>
+	</div>
+
+	{{#each questionList}}
+		{{>questionItem}}
+	{{/each}}
+
+</template>
+
+
+
+<template name="questionItem">
+	<div class="jumbotron col-md-8 col-md-offset-2">
+		<h3>{{question}}</h3>
+
+		<h4>Alternative 1: {{alt1}} - {{alt1Boolean}}</h4>
+		<h4>Alternative 2: {{alt2}} - {{alt2Boolean}}</h4>
+		<h4>Alternative 3: {{alt3}} - {{alt3Boolean}}</h4>
+		<h4>Alternative 4: {{alt4}} - {{alt4Boolean}}</h4>
+
+	</div>
+
+
+</template>

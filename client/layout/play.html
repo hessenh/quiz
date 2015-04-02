@@ -1,0 +1,18 @@
+<template name="play">
+	<div class="jumbotron col-md-8 col-md-offset-2">
+		{{#if isValidCode}}
+			<h3>Starting quiz</h3>
+			<br>
+			<div class="form-group">
+			  	<label for="usr">Nick:</label>
+			  	<input type="text" class="form-control" id="nickname">
+			</div>
+			<div class="form-group pull-right" >
+		        	<button type="submit" class="btn btn-primary enterQuiz">Submit</button>
+		    </div>
+		{{else}}
+			<h3>Code is not valid</h3>
+		{{/if}}
+		
+	</div>
+</template>

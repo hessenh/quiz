@@ -1,0 +1,20 @@
+<template name = "lobby">
+		<div class="jumbotron col-md-8 col-md-offset-2">
+			{{>spinner}}
+
+			<h3>Waiting for players to connect..</h3>
+
+		</div>
+		<div class="jumbotron col-md-8 col-md-offset-2">
+
+			
+			{{#each playerList}}
+				<h4> - {{nick}}</h4>
+			{{/each}}
+
+			<br>
+			{{#if isAdmin}}
+				<button type="button" class="btn btn-primary btn-lg enterRoom" id="setTime">Start</button>
+			{{/if}}
+		</div>
+</template>

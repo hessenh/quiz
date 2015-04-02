@@ -1,0 +1,94 @@
+<template name="newquiz">
+
+	<div class="jumbotron col-md-8 col-md-offset-2">
+
+		<form id = "questionForm">		
+			<div class ="row">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="form-group">
+				      	<div class="col-lg-10">
+				        	<span class="help-block">Question {{question_number}}</span>
+				        	<textarea class="form-control" rows="3" id="question" placeholder = "Question"></textarea>
+				      	</div>
+				    </div>
+				</div>
+
+			</div>
+
+			
+
+			<div class="row">
+
+			  	<div class="col-md-6 ">
+				<div class="form-group">
+			      	<div class="col-lg-10">
+
+			        	<div class="ui toggle checkbox alt1checkbox">
+				    		<input type="checkbox" name="public">
+
+							<label>Correct</label>
+				  		</div>
+			        	<textarea class="form-control" rows="3" id="alt1" placeholder="Alternativ 1"></textarea>
+			      	</div>
+			    </div>
+			  	
+			  	</div>
+			  	<div class="col-md-6">
+			  		<div class="form-group">
+			      	<div class="col-lg-10">
+			        	<div class="ui toggle checkbox alt2checkbox">
+				    		<input type="checkbox" name="public">
+				    		<label>Correct</label>
+				  		</div>
+			        	<textarea class="form-control" rows="3" id="alt2" placeholder="Alternative 2"></textarea>
+			      	</div>
+			    </div>
+			  	</div>
+
+			</div>
+
+			<div class="row">
+
+			  	<div class="col-md-6">
+
+				<div class="form-group">
+			      	<div class="col-lg-10">
+			        	<div class="ui toggle checkbox alt3checkbox">
+				    		<input type="checkbox" name="public">
+							<label>Correct</label>
+				  		</div>
+			        	<textarea class="form-control" rows="3" id="alt3" placeholder = "Alternative 3"></textarea>
+			      	</div>
+			    </div>
+			  	
+			  	</div>
+			  	<div class="col-md-6">
+			  		<div class="form-group">
+			      	<div class="col-lg-10">
+			        	<div class="ui toggle checkbox alt4checkbox">
+				    		<input type="checkbox" name="public">
+							<label>Correct</label>
+				  		</div>
+			        	<textarea class="form-control" rows="3" id="alt4" placeholder = "Alternative 4"></textarea>
+			      	</div>
+			    </div>
+			  	</div>
+			</div>
+		</form>
+		<br>
+
+
+
+		<br>
+		<div class="row">
+			<div class="form-group">
+	      		<div class="col-md-4 col-lg-offset-2 pull-right">
+	        		<button type="reset" class="btn btn-default addQuestion">Add</button>
+	        		<button type="submit" class="btn btn-primary finish">Finish</button>
+	     		</div>
+	    	</div>
+		</div>
+	</div>
+
+
+</template>
