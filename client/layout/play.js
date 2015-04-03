@@ -3,7 +3,7 @@ Template.play.events({
 	'click .enterQuiz':function(e){
 		var nickname = $("#nickname").val();
 
-		Meteor.call('addUser',nickname, function (error, result) {
+		Meteor.call('addUser',nickname,Session.get("quiz_key"), function (error, result) {
 			if(result){
 				Session.set("nick", nickname);
 				console.log("Added user " + nickname);

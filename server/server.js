@@ -16,7 +16,7 @@ Meteor.publish('games',function(){
 
 Meteor.methods({
 	'addQuestion':function(question,alt1,alt2,alt3,alt4,alt1Boolean,alt2Boolean,alt3Boolean,alt4Boolean,quiz_key,question_number){
-
+		
 		Questions.insert({question:question,alt1:alt1,alt2:alt2,alt3:alt3,alt4:alt4,alt1Boolean:alt1Boolean,alt2Boolean:alt2Boolean
 			,alt3Boolean:alt3Boolean,alt4Boolean:alt4Boolean,quiz_key:quiz_key,question_number:question_number});
 	},
@@ -35,17 +35,17 @@ Meteor.methods({
 			return false;
 		}
 
-		Players.insert({nick:nickname,quiz_key:quiz_key});
+		Players.insert({nick:nickname,quiz_key:quiz_key,time:0});
 		return true;
 	},
 	'setupGame':function(quiz_key){
 		if(Games.find({quiz_key:quiz_key}).count()>0){
-			Games.update({quiz_key:quiz_key},{$set: {started: true,startTime:null}});
+			Games.update({quiz_key:quiz_key},{$set: {started: true,startTime:null,number:1}});
 			console.log("Setting true");
 		}
 		else{
 			console.log("Game started");
-			Games.insert({quiz_key:quiz_key,started:true,startTime:null})
+			Games.insert({quiz_key:quiz_key,started:true,startTime:null,number:1})
 		}
 	},
 	'getStartTime': function (quiz_key) {
@@ -53,11 +53,53 @@ Meteor.methods({
     },
     'setStartTime':function(quiz_key){
     	console.log("Setting starting time:" + (new Date()).getTime());
-    	var time = (new Date()).getTime()+5000;
+    	var time = (new Date()).getTime();
     	Games.update({quiz_key:quiz_key,started:true},{$set: {startTime:time}});
     },
     'reset':function(quiz_key){
     	Games.update({quiz_key:quiz_key},{$set:{started:false,startTime:null}})
+    },
+    'sendScore':function(quiz_key,nick,time,alt){
+
+    	var game = Games.findOne({quiz_key:quiz_key});
+    	if(game.startTime !=null){
+    		Games.update({quiz_key:quiz_key},{$set:{startTime:null}})
+    	}
+
+
+
+    	var question = Questions.findOne({quiz_key:quiz_key,question_number:game.number});
+
+
+    	var diff = game.startTime;
+    	diff = time - diff;
+    	var totalTime=0;
+    	
+    	if(question.alt1Boolean & alt==1){
+    		totalTime = Players.findOne({nick:nick}).time + diff;
+    		Players.update({nick:nick},{$set :{time:totalTime}});
+    		console.log("Correct 1" );
+    	}
+    	if(question.alt2Boolean & alt==2){
+    		totalTime = Players.findOne({nick:nick}).time + diff;
+    		Players.update({nick:nick},{$set :{time:totalTime}});
+    		console.log("Correct 2" );
+    	}
+    	if(question.alt3Boolean & alt==3){
+    		totalTime = Players.findOne({nick:nick}).time + diff;
+    		Players.update({nick:nick},{$set :{time:totalTime}});
+    		console.log("Correct 3" );
+    	}
+    	if(question.alt4Boolean & alt==4){
+    		totalTime = Players.findOne({nick:nick}).time + diff;
+    		Players.update({nick:nick},{$set :{time:totalTime}});
+    		console.log("Correct 4" );
+    	}  	
+    },
+    'nextQuestion':function(quiz_key){
+    	var number = Games.findOne({quiz_key:quiz_key}).number;
+
+    	Games.update({quiz_key:quiz_key},{$set:{number:number+1}})
     }
 	
 });

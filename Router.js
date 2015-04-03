@@ -6,6 +6,7 @@ Router.map(function(){
     this.route("play");
     this.route("lobby");
     this.route("gameplay");
+    this.route("showScore");
 });
 
 

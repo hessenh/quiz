@@ -1125,3 +1125,19 @@ form .form-control:focus {
 .question{
   text-align: center;
 }
+.alt1_client{
+  background-color: #FF0000;
+  text-align: center;
+}
+.alt2_client{
+  background-color: #009933;
+  text-align: center;
+}
+.alt3_client{
+  background-color: #0033CC;
+  text-align: center;
+}
+.alt4_client{
+  background-color: #FFFF00;
+  text-align: center;
+}
