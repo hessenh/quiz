@@ -18,7 +18,7 @@ Meteor.methods({
 	'addQuestion':function(question,alt1,alt2,alt3,alt4,alt1Boolean,alt2Boolean,alt3Boolean,alt4Boolean,quiz_key,question_number){
 		
 		Questions.insert({question:question,alt1:alt1,alt2:alt2,alt3:alt3,alt4:alt4,alt1Boolean:alt1Boolean,alt2Boolean:alt2Boolean
-			,alt3Boolean:alt3Boolean,alt4Boolean:alt4Boolean,quiz_key:quiz_key,question_number:question_number});
+			,alt3Boolean:alt3Boolean,alt4Boolean:alt4Boolean,quiz_key:quiz_key,question_number:question_number,endTime:null});
 	},
 	'generate_key':function(){
 		var text = "";
@@ -55,9 +55,10 @@ Meteor.methods({
     	console.log("Setting starting time:" + (new Date()).getTime());
     	var time = (new Date()).getTime();
     	Games.update({quiz_key:quiz_key,started:true},{$set: {startTime:time}});
+        Questions.update({quiz_key:quiz_key},{$set:{endTime:time+15000}});
     },
     'reset':function(quiz_key){
-    	Games.update({quiz_key:quiz_key},{$set:{started:false,startTime:null}})
+    	Games.update({quiz_key:quiz_key},{$set:{started:false,startTime:null,number:1}})
     },
     'sendScore':function(quiz_key,nick,time,alt){
 
@@ -99,7 +100,15 @@ Meteor.methods({
     'nextQuestion':function(quiz_key){
     	var number = Games.findOne({quiz_key:quiz_key}).number;
 
-    	Games.update({quiz_key:quiz_key},{$set:{number:number+1}})
+    	//Check if the if no more questions
+    	if(Questions.find({quiz_key:quiz_key,question_number:number+1}).count()<1){
+    		console.log("Finished");
+    		return false;
+    	}
+    	else{
+    		Games.update({quiz_key:quiz_key},{$set:{number:number+1}})
+    		return true;
+    	}
     }
 	
 });

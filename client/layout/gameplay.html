@@ -1,80 +1,64 @@
 <template name="gameplay">
 	<div class="jumbotron col-md-12">
 
+		{{#if isAdmin}}
 		<div class="row">
-
 		
 	      	<div class="col-lg-10 question">
+	      		{{>SvgCircleProgress radius=30 total=15 progress=timeLeft bgColor="grey" progressColor="rgba(255,255,255,0.8)"}}
+	      		<!--<h3>{{timeLeft}}</h3>-->
 	      		<h1>{{question}}</h1>
-	        	
 	      	</div>
-		  	
-
 		</div>
 
-		{{#if isAdmin}}
+			{{#if isFinished}}
+				<button type="submit" class="btn btn-primary finish">Finish</button>
+			{{else}}
+				<div class="row">
+				  	<div class="jumbotron col-md-5 alt1">
+				    	<h2>{{alt1}}</h2>
+				  	</div>
+				  	<div class="col-md-2"></div>
+				  	<div class="jumbotron col-md-5 alt2">
+				       	<h2>{{alt2}}</h2>
+				  	</div>
+				</div>
+				<div class="row">
+				  	<div class="jumbotron col-md-5 alt3">
+				        <h2>{{alt3}}</h2>
+				  	</div>
+				  	<div class="col-md-2"></div>
+				  	<div class="jumbotron col-md-5 alt4">
+				        <h2>{{alt4}}</h2>
+				  	</div>
+				</div>
 
-		<div class="row">
-		  	<div class="jumbotron col-md-5 alt1_client">
-		        	
-		  	</div>
-		  	<div class="col-md-2"></div>
-		  	<div class="jumbotron col-md-5 alt2_client">
-		        	
-		  	</div>
-		</div>
-		<div class="row">
-		  	<div class="jumbotron col-md-5 alt3_client">
-		        	
-		  	</div>
-		  	<div class="col-md-2"></div>
-		  	<div class="jumbotron col-md-5 alt4_client">
-		        
-		  	</div>
-		</div>
+				<button type="submit" class="btn btn-primary next">Next</button>
 
-
-
-		<button type="submit" class="btn btn-primary next">Next</button>
+			{{/if}}
 		
 		{{else}}
 		<div class="row">
+		
+	      	<div class="col-lg-10 question">
+	      		<h1>{{question}}</h1>
+	      	</div>
+		</div>
+
+		<div class="row">
 		  	<div class="jumbotron col-md-5 alt1_client">
-		        	
 		  	</div>
 		  	<div class="col-md-2"></div>
 		  	<div class="jumbotron col-md-5 alt2_client">
-		        	
 		  	</div>
 		</div>
 		<div class="row">
 		  	<div class="jumbotron col-md-5 alt3_client">
-		        	
 		  	</div>
 		  	<div class="col-md-2"></div>
 		  	<div class="jumbotron col-md-5 alt4_client">
-		        
 		  	</div>
-		</div>
-
-		<!-- <div class="row">
-		  	<div class="jumbotron col-md-5 alt1">
-		        	<h2>{{alt1}}</h2>
-		  	</div>
-		  	<div class="col-md-2"></div>
-		  	<div class="jumbotron col-md-5 alt2">
-		        	<h2>{{alt2}}</h2>
-		  	</div>
-		</div>
-		<div class="row">
-		  	<div class="jumbotron col-md-5 alt3">
-		        	<h2>{{alt3}}</h2>
-		  	</div>
-		  	<div class="col-md-2"></div>
-		  	<div class="jumbotron col-md-5 alt4">
-		        	<h2>{{alt4}}</h2>
-		  	</div>
-		</div> -->
+		</div> 
 		{{/if}}
 
 

@@ -1,4 +1,13 @@
+Meteor.startup(function(){
+  Meteor.setInterval(function() {
+    Session.set('now', now());
+  }, 1000);
+});
 
+var now = function() {
+  var date = new Date();
+  return Math.floor(date.getTime()/1000);
+}
 
 Template.gameplay.events({
 	'click .alt1_client':function(){
@@ -66,9 +75,13 @@ Template.gameplay.events({
 			if(error){
 				console.log("Error next question");
 			}
-			else{
+			if(result){
 				console.log("Next question");
 				Meteor.call("setStartTime",Session.get("quiz_key"));
+			}
+			else{
+				console.log("quiz finished");
+				Session.set("quiz_finished", true);
 			}
 		});
 	}
@@ -92,5 +105,21 @@ Template.gameplay.helpers({
 	},
 	isAdmin:function(){
 		return Session.get("isAdmin");
-	}
+	},
+	'isFinished':function(){
+		console.log("hei");
+		Session.get("quiz_finished");
+	},
+	timeLeft:function(){
+		var endTime = Questions.findOne({quiz_key:Session.get("quiz_key")}).endTime;
+  		Session.set("timeleft",Math.floor((endTime/1000 - Session.get("now"))));
+
+  		if(Session.get("timeleft")<1){
+  			return 15;
+  		}
+  		else{
+  			console.log(16-Session.get("timeleft"));
+  			return 16-Session.get("timeleft");
+  		}
+  	}
 })
