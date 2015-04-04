@@ -1126,3 +1126,61 @@ form .form-control:focus {
   margin: 0 auto;
   text-align: center;
 }
+
+.enterNick{
+  padding-top: 30px;
+  width: 100px;
+  margin: 0 auto;
+  text-align: center;
+}
+.waiting{
+  padding-top: 0px;
+  margin: 0 auto;
+  text-align: center;
+}
+.playerlist{
+  padding-top: 40px;
+  margin: 0 auto;
+  text-align: center;
+}
+.createQuiz{
+  padding-top: 40px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+.codefield{
+  display: inline;
+  width: 100px;
+  margin: 0 auto;
+}
+.resetfiled{
+  display: inline;
+  width: 100px;
+  margin: 0 auto;
+}
+
+.gameplayAdmin{
+  padding-top: 40px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+.getReady{
+  padding-top: 0px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+.questionform{
+  padding-top: 0px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+.quizOverview{
+  padding-top: 0px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center; 
+}

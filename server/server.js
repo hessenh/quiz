@@ -22,7 +22,7 @@ Meteor.methods({
 	},
 	'generate_key':function(){
 		var text = "";
-    	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    	var possible = "0123456789";
 
     	for( var i=0; i < 5; i++ )
         	text += possible.charAt(Math.floor(Math.random() * possible.length));
@@ -59,7 +59,7 @@ Meteor.methods({
     },
     'reset':function(quiz_key){
     	Games.update({quiz_key:quiz_key},{$set:{started:false,startTime:null,number:1}})
-        Players.remove({quiz_key:quiz_key});
+        Players.remove();
     },
     'sendScore':function(quiz_key,nick,time,alt){
 

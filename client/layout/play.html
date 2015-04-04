@@ -1,4 +1,22 @@
 <template name="play">
+	
+		{{#if isValidCode}}
+			<div class="enterNick">
+				<div class="input-append">
+				  	<input type="text" class="form-control" id="nickname" placeholder="Nickname">
+				 	<br>
+			        <button type="submit" class="btn btn-primary enterQuiz">Submit</button>
+			    </div>
+			</div>
+		{{else}}
+			<div class="enterNick">
+				<h3>Code is not valid</h3>
+			</div>
+		{{/if}}
+</template>
+
+
+<template name="play2">
 	<div class="jumbotron col-md-8 col-md-offset-2">
 		{{#if isValidCode}}
 			<h3>Starting quiz</h3>

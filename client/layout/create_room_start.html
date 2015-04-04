@@ -1,4 +1,26 @@
 <template name="createQuizStart">
+	<div class="createQuiz">
+		<div class="form-group">
+			<h3> <a class="btn btn-primary btn-lg startCreate" type="submit">Create</a> new quiz</h3>
+		</div>
+			<h3>..or join an existing one</h3>
+	     	<div class="input-append">
+				<input type="text" class="form-control codefield" id="input_code" placeholder="Code">
+
+				<button type="button" class="btn btn-primary btn-lg codefiled enterRoom">Enter</button>
+			</div>
+
+			<br>
+			<div class="input-append">
+				<h3 >Reset</h3><input type="text" class="form-control resetfiled" id="input_code2" placeholder="Code">
+				<button type="button" class="btn btn-primary btn-lg reset">reset</button>
+			</div>
+	</div>
+
+
+</template>
+
+<template name="createQuizStart2">
 	<div class="jumbotron col-md-8 col-md-offset-2">
 		<div class="form-group">
 			<h3> <a class="btn btn-primary btn-lg startCreate" type="submit">Create</a> new quiz</h3>
