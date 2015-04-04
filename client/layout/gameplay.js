@@ -80,7 +80,6 @@ Template.gameplay.events({
 				Meteor.call("setStartTime",Session.get("quiz_key"));
 			}
 			else{
-				console.log("quiz finished");
 				Session.set("quiz_finished", true);
 			}
 		});
@@ -107,8 +106,18 @@ Template.gameplay.helpers({
 		return Session.get("isAdmin");
 	},
 	'isFinished':function(){
-		console.log("hei");
-		Session.get("quiz_finished");
+		/*if(Games.findOne({quiz_key:quiz_key}).number == Questions.find({quiz_key:quiz_key}).count()){
+			Session.get("quiz_finished");
+			console.log("hei");
+			return true;
+		}
+		return false;
+		*/
+		if(Session.get("quiz_finished")){
+			return true;
+		}
+		return false;
+
 	},
 	timeLeft:function(){
 		var endTime = Questions.findOne({quiz_key:Session.get("quiz_key")}).endTime;
@@ -121,5 +130,8 @@ Template.gameplay.helpers({
   			console.log(16-Session.get("timeleft"));
   			return 16-Session.get("timeleft");
   		}
+  	},
+  	scoreList:function(){
+  		return Players.find({quiz_key:Session.get("quiz_key")}, {sort: {time: -1}});
   	}
 })

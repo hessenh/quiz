@@ -59,6 +59,7 @@ Meteor.methods({
     },
     'reset':function(quiz_key){
     	Games.update({quiz_key:quiz_key},{$set:{started:false,startTime:null,number:1}})
+        Players.remove({quiz_key:quiz_key});
     },
     'sendScore':function(quiz_key,nick,time,alt){
 
@@ -67,14 +68,14 @@ Meteor.methods({
     		Games.update({quiz_key:quiz_key},{$set:{startTime:null}})
     	}
 
-
-
     	var question = Questions.findOne({quiz_key:quiz_key,question_number:game.number});
 
 
     	var diff = game.startTime;
     	diff = time - diff;
-    	var totalTime=0;
+    	diff = 15000-diff;
+        var totalTime=0;
+        
     	
     	if(question.alt1Boolean & alt==1){
     		totalTime = Players.findOne({nick:nick}).time + diff;
