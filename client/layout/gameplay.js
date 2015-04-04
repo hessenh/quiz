@@ -127,7 +127,7 @@ Template.gameplay.helpers({
   			return 15;
   		}
   		else{
-  			console.log(16-Session.get("timeleft"));
+  			//console.log(16-Session.get("timeleft"));
   			return 16-Session.get("timeleft");
   		}
   	},

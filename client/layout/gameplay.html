@@ -1,7 +1,8 @@
 <template name="gameplay">
-	<div class="jumbotron col-md-12">
-
+	
 		{{#if isAdmin}}
+		<div class="jumbotron col-md-12">
+
 			{{#if isFinished}}
 				{{#each scoreList}}
 					<h3>{{nick}} - {{time}}</h3>
@@ -38,32 +39,28 @@
 
 					<button type="submit" class="btn btn-primary next">Next</button>
 			{{/if}}
+		</div>
+
 		{{else}}
 
 			{{#if isFinished}}
 				<h1>Quiz finished</h1>
 
 			{{else}}
-
-				<div class="row">
-				  	<div class="jumbotron col-md-5 alt1_client">
+				<div class="square">
+		
+				  	<div class="sq alt1_client">
+					</div>
+				  	<div class="sq alt2_client">
 				  	</div>
-				  	<div class="col-md-2"></div>
-				  	<div class="jumbotron col-md-5 alt2_client">
+				
+				  	<div class="sq alt3_client">
+				  	</div>
+
+				  	<div class="sq alt4_client">
 				  	</div>
 				</div>
-				<div class="row">
-				  	<div class="jumbotron col-md-5 alt3_client">
-				  	</div>
-				  	<div class="col-md-2"></div>
-				  	<div class="jumbotron col-md-5 alt4_client">
-				  	</div>
-				</div> 
 			{{/if}}
 		{{/if}}
-
-
-
-	</div>
 
 </template>

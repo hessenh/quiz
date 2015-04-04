@@ -2,7 +2,7 @@ Template.home.events({
 	'click .enterRoom': function () {
 		Session.set("quiz_key", document.getElementById("input_code").value);
 		console.log("Entering room: " + document.getElementById("input_code").value);
-
+		Session.set("closeNavbar",true);
 		Router.go("play");
 	},
 	'click .reset':function(e,t){

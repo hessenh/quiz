@@ -4,15 +4,30 @@
 </head>
 
 <body>  
-    <header>
-	      {{> navigation }}
-	</header>
+	{{>topbar}}
 </body>
 
 
 <template name="layout">
 	<div class="container">
 	    {{> yield}}
-  </div>
- 
+  	</div>
+ 	{{>footer}}
+</template>
+
+
+<template name="footer">
+	<footer class="footer">
+        <div class="container text-center">
+                <small class="copyright">Create or edit a quiz <a href="createQuizStart" >here</a></small>
+        </div><!--//container-->
+    </footer>
+</template>
+
+<template name="topbar">
+	<footer class="topbar">
+        <div class="container text-center">
+                <small class="copyright"> <a href="/" >Home</a></small>
+        </div><!--//container-->
+    </footer>
 </template>
