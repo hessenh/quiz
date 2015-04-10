@@ -1,6 +1,15 @@
 Meteor.startup(function(){
   Meteor.setInterval(function() {
     Session.set('now', now());
+
+
+    if(Session.get("isAdmin")){
+	
+		Meteor.call('numberFinished',Session.get("quiz_key"), function (error, result) {
+			Session.set("numberFinished",result);
+			console.log("getFinished");
+		});
+	}
   }, 1000);
 });
 
@@ -133,5 +142,11 @@ Template.gameplay.helpers({
   	},
   	scoreList:function(){
   		return Players.find({quiz_key:Session.get("quiz_key")}, {sort: {time: -1}});
+  	},
+  	numberPlayers:function(){
+  		return Players.find({quiz_key:Session.get("quiz_key")}).count();
+  	},
+  	numberFinished:function(){
+  		return Session.get("numberFinished");
   	}
 })

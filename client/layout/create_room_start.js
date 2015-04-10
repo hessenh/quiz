@@ -20,5 +20,9 @@ Template.createQuizStart.events({
 			Session.set("isAdmin", true);
 		});
 
+	},
+	'click .reset':function(e,t){
+		Meteor.call('reset', $('#input_code2').val());
+		Session.set("isAdmin",false);
 	}
 });

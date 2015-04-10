@@ -59,7 +59,8 @@ Meteor.methods({
     },
     'reset':function(quiz_key){
     	Games.update({quiz_key:quiz_key},{$set:{started:false,startTime:null,number:1}})
-        Players.remove();
+        Players.remove({quiz_key:quiz_key});
+        console.log("Reset");
     },
     'sendScore':function(quiz_key,nick,time,alt){
 
@@ -79,22 +80,22 @@ Meteor.methods({
     	
     	if(question.alt1Boolean & alt==1){
     		totalTime = Players.findOne({nick:nick}).time + diff;
-    		Players.update({nick:nick},{$set :{time:totalTime}});
+    		Players.update({nick:nick},{$set :{time:totalTime,number:game.number}});
     		console.log("Correct 1" );
     	}
     	if(question.alt2Boolean & alt==2){
     		totalTime = Players.findOne({nick:nick}).time + diff;
-    		Players.update({nick:nick},{$set :{time:totalTime}});
+    		Players.update({nick:nick},{$set :{time:totalTime,number:game.number}});
     		console.log("Correct 2" );
     	}
     	if(question.alt3Boolean & alt==3){
     		totalTime = Players.findOne({nick:nick}).time + diff;
-    		Players.update({nick:nick},{$set :{time:totalTime}});
+    		Players.update({nick:nick},{$set :{time:totalTime,number:game.number}});
     		console.log("Correct 3" );
     	}
     	if(question.alt4Boolean & alt==4){
     		totalTime = Players.findOne({nick:nick}).time + diff;
-    		Players.update({nick:nick},{$set :{time:totalTime}});
+    		Players.update({nick:nick},{$set :{time:totalTime,number:game.number}});
     		console.log("Correct 4" );
     	}  	
     },
@@ -110,6 +111,10 @@ Meteor.methods({
     		Games.update({quiz_key:quiz_key},{$set:{number:number+1}})
     		return true;
     	}
+    },
+    'numberFinished':function(quiz_key){
+        var game = Games.findOne({quiz_key:quiz_key});
+        return Players.find({quiz_key:quiz_key,number:game.number}).count();
     }
 	
 });
